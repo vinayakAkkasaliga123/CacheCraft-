@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import { cacheMiddleware } from "./cache/cacheMiddleware.js";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
@@ -13,7 +14,9 @@ app.use(express.json());
 
 // API endpoint with caching middleware
 app.get("/api/products", cacheMiddleware, (req, res) => {
-  const dataPath = path.join("data", "products.json");
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  const dataPath = path.join(__dirname, "data", "products.json");
   const products = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
 
   // simulate delay to show cache improvement
@@ -34,3 +37,11 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const dataPath = path.join(__dirname, "data", "products.json");
+
+
