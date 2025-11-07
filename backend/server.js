@@ -32,11 +32,13 @@ app.get("/api/products", cacheMiddleware, (req, res) => {
 // root
 app.get("/", (req, res) => {
   res.send("Welcome to CacheCraft 🚀 - Custom Caching Layer for APIs");
+  res.send("Please visit /api/products to see the demo of caching");
 });
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
 
 
 
