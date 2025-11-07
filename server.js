@@ -2,7 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
-import { cacheMiddleware } from "./cache/cacheMiddleware.js";
+import { cacheMiddleware } from "./backend/cache/cacheMiddleware.js";
+
 
 dotenv.config();
 
@@ -34,3 +35,4 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
